@@ -1,0 +1,13 @@
+$color-p-1: #08141e; //dark
+$color-p-2: #0f2a3f;
+$color-p-3: #20394f;
+$color-p-4: #f6d6bd; //light
+$color-n-1: #c3a38a; //light
+$color-n-2: #997577;
+$color-n-3: #816271;
+$color-n-4: #4e495f; //dark
+
+body {
+    background-color: $color-p-1;
+    color: $color-p-4;
+}
