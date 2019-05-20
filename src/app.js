@@ -22,7 +22,8 @@ app.mount('body')
 function countStore (state, emitter) {
   state.count = 0
   state.carsLoaded = false
-  state.year = ""
+  state.yearMax = ""
+  state.yearMin = ""
   state.carNameFilter = ""
   emitter.on('increment', function (count) {
     state.count += count
@@ -38,8 +39,13 @@ function countStore (state, emitter) {
     })
   })
 
-  emitter.on('year text', (yearText) => {
-    state.year = yearText
+  emitter.on('year text', (text) => {
+    state.yearMin = text
+    emitter.emit('render')
+  })
+
+  emitter.on('year max text', (text) => {
+    state.yearMax = text
     emitter.emit('render')
   })
 

@@ -15,8 +15,12 @@ export function view (state, emit) {
         <input type=text value=${state.carNameFilter} oninput=${nameFilterTextEntry}>
       </div>
       <div>
-        <label>Min Year (ex: 81)</label>
-        <input type=text value=${state.year} oninput=${yearTextEntry}>
+        <label>Min Year (ex: 70)</label>
+        <input type=text value=${state.yearMin} oninput=${yearMinTextEntry}>
+      </div>
+      <div>
+        <label>Max Year (ex: 81)</label>
+        <input type=text value=${state.yearMax} oninput=${yearMaxTextEntry}>
       </div>
       <h2>Car Select</h2>
       <ul class="ca-car-detail">
@@ -31,8 +35,12 @@ export function view (state, emit) {
     emit('loadcars')
   }
 
-  function yearTextEntry(e){
+  function yearMinTextEntry(e){
     emit('year text', e.target.value)
+  }
+
+  function yearMaxTextEntry(e){
+    emit('year max text', e.target.value)
   }
 
   function nameFilterTextEntry(e){
@@ -41,9 +49,10 @@ export function view (state, emit) {
 
   function filteredCars() {
     return state.cars.filter((car) => {
-      let isGreaterThanMinYear = !state.year ? true : car["model year"] >= state.year
-      let hasText = !state.carNameFilter ? true : car["car name"].includes(state.carNameFilter)
-      if(isGreaterThanMinYear && hasText)
+      let isGreaterThanMinYear = !state.yearMin ? true : car["model year"] >= state.yearMin
+      let isLessThanMaxYear = !state.yearMax ? true : car["model year"] <= state.yearMax
+      let hasText = !state.carNameFilter ? true : car["car name"].includes(state.carNameFilter.toLowerCase())
+      if(isGreaterThanMinYear && hasText && isLessThanMaxYear)
           return true
       return false
     })
