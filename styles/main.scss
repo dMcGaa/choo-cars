@@ -28,3 +28,16 @@ section {
         margin: 0 0.2em;
     }
 }
+
+ul.ca-car-detail {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  li {
+    display: flex;
+    div {
+      flex: 1;
+    }
+  }
+}
