@@ -31,7 +31,7 @@ function countStore (state, emitter) {
   })
 
   emitter.on('loadcars', () => {
-  axios.get("https://api.myjson.com/bins/9hdjn", {})
+  axios.get("https://raw.githubusercontent.com/dMcGaa/choo-cars/master/data/car-data.json", {})
     .then( (res) => {
       state.carsLoaded = true
       state.cars = res.data ? carDetails.createCarDetails(res.data) : []
